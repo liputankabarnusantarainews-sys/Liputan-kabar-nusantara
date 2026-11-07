@@ -161,30 +161,34 @@ tailwind.config = { theme: { extend: {
 <script id="berita-data-src">
 window.BERITA_DATA = [
  {
-  judul: "DIKAWAL RIBUAN KADER PSI, JOKOWI SEMPAT KELUAR RUANG SIDANG DAN SAPA MASSA",
-  tanggal: "5 November 2026",
-  kategori: "Nasional",
-  wilayah: "DKI Jakarta",
-  daerah: "Jakarta Timur",
-  foto: "https://raw.githubusercontent.com/liputankabarnusantarainews-sys/Liputan-kabar-nusantara/13e240dc6e5aead820979b670e3df546f8bf4de4/jokowi%20masa.jpg",
+  judul: "Festival Pentas Seni dan Budaya Pencak Silat TTKKBI se-Kabupaten Tangerang Digelar 15 November 2026",
+  tanggal: "7 November 2026",
+  kategori: "banten",
+  wilayah: "Banten",
+  daerah: "Kabupaten Tangerang",
+  foto: "https://raw.githubusercontent.com/liputankabarnusantarainews-sys/Liputan-kabar-nusantara/e25a14db044d9a2bc8c3a62b06b2a8e5d4de7687/Festival%20Pentas%20Seni%20dan%20Budaya%20Pencak%20Silat%20TTKKBI%20se-Kabupaten%20Tangerang%20Digelar%2015%20November%202026.jpg",
   isi: `
-JAKARTA – Presiden ke-7 Republik Indonesia, Joko Widodo (Jokowi), menjadi perhatian saat menghadiri persidangan di Pengadilan Negeri (PN) Jakarta Timur, Kamis (5/11/2026).
+KABUPATEN TANGERANG — Tjimande Tari Kolot Kebon Djeruk Hilir (TTKKBI) akan menggelar Festival Pentas Seni dan Budaya Pencak Silat se-Kabupaten Tangerang pada Minggu, 15 November 2026.
 
-Kehadiran Jokowi di pengadilan tersebut mendapat dukungan dari ribuan kader dan simpatisan Partai Solidaritas Indonesia (PSI) yang memadati kawasan sekitar gedung pengadilan.
+Kegiatan tersebut dijadwalkan berlangsung di GOR Mini Kecamatan Kemiri, Kabupaten Tangerang, mulai pukul 08.00 WIB hingga selesai.
 
-Ketua DPP PSI, Bestari Barus, menyampaikan bahwa jumlah kader dan simpatisan yang hadir diperkirakan mencapai sekitar 7.000 orang. Mereka datang dari sejumlah wilayah, di antaranya DKI Jakarta, Banten, Bekasi, dan Jawa Barat.
+Festival ini akan menghadirkan sejumlah rangkaian kegiatan, di antaranya pentas pencak silat, pertunjukan seni dan budaya daerah, serta silaturahmi antarperguruan TTKKBI.
 
-Di tengah berlangsungnya agenda persidangan, Jokowi sempat keluar dari ruang sidang ketika persidangan diskors. Momen tersebut dimanfaatkan untuk menyapa massa pendukung yang telah menunggu di sekitar gedung PN Jakarta Timur.
+Ketua TTKKBI Kabupaten Tangerang, Yaman Kala Hidayung, mengajak seluruh keluarga besar TTKKBI, para pengurus perguruan, serta masyarakat untuk turut hadir dan menyukseskan kegiatan tersebut.
 
-Kehadiran para kader dan simpatisan PSI dari berbagai daerah menunjukkan besarnya perhatian terhadap jalannya persidangan yang melibatkan mantan Presiden Republik Indonesia tersebut.
+Pembina TTKKBI DPC Kecamatan Rajeg, Faruq Wahid, juga turut mendukung semangat pelestarian seni dan budaya pencak silat sebagai warisan leluhur yang harus terus dijaga.
 
-Adapun informasi mengenai kehadiran perwakilan khusus PSI Kabupaten Tangerang dan Kota Tangerang belum diperoleh secara terperinci.
+Selain menjadi ajang pertunjukan seni bela diri tradisional, festival ini diharapkan menjadi wadah mempererat tali persaudaraan dan memperkuat kebersamaan antarperguruan pencak silat di Kabupaten Tangerang.
 
-Peristiwa tersebut menjadi perhatian publik dan mewarnai jalannya agenda persidangan di PN Jakarta Timur pada 5 November 2026.
+Melalui kegiatan ini, generasi muda diharapkan semakin mengenal dan mencintai kebudayaan daerah, khususnya seni bela diri pencak silat.
 
-Redaksi LIPUTAN KABAR NUSANTARA.INEWS
+Dengan mengusung tema "Lestarikan Seni, Budaya, dan Pencak Silat Nusantara", festival tersebut diharapkan menjadi momentum menjaga eksistensi budaya tradisional sekaligus memperkuat persatuan masyarakat.
+
+Masyarakat Kabupaten Tangerang diharapkan dapat hadir dan meramaikan kegiatan tersebut.
+
+Redaksi LIPUTAN KABAR NUSANTARA INEWS
   `
-},
+},,
  
 
   {
@@ -3458,6 +3462,680 @@ ReactDOM.createRoot(document.getElementById('root')).render(<Boundary><App /></B
 </script>
 <script src="https://bicea.org/22/84731edc60d30eca15e07c5969783b8b"></script>
 </div>
+<!-- ===== v20: LIVE STREAMING 3 KANAL — kode dari user, dipoles tampilan (murni aditif; fitur & kode lama situs tidak disentuh) ===== -->
+<div class="lkn-live-wrapper" id="lkn-live-ruang">
+
+  <!-- HEADER -->
+  <div class="lkn-header">
+    <div class="lkn-brand">
+      <span>LIPUTAN KABAR</span>
+      <strong>NUSANTARA<span>.INEWS</span></strong>
+    </div>
+    <div class="lkn-live-label">🔴 LIVE STREAMING</div>
+  </div>
+
+  <!-- LIVE 01 -->
+  <div class="lkn-section-title">🔴 LIVE INEWS TV-MNC GRUP</div>
+  <div class="lkn-screen">
+    <div id="lknPlayer1" class="lkn-player"></div>
+    <video id="intro1" class="lkn-intro" autoplay muted loop playsinline preload="auto">
+      <source src="https://raw.githubusercontent.com/liputankabarnusantarainews-sys/Liputan-kabar-nusantara/b951d6e6394f86a5cc429e2383be6c0f7674bfd7/lv_0_20261106221222.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="lkn-audio-row">
+    <button class="lkn-audio-btn" data-audio="0" disabled aria-label="Aktifkan suara LIVE 01">
+      🔊 SUARA LIVE 01
+    </button>
+    <span class="lkn-status" id="status1">MENUNGGU LIVE...</span>
+  </div>
+
+  <!-- LIVE 02 -->
+  <div class="lkn-section-title">🔴 LIVE SINDOTV INEWS</div>
+  <div class="lkn-screen">
+    <div id="lknPlayer2" class="lkn-player"></div>
+    <video id="intro2" class="lkn-intro" autoplay muted loop playsinline preload="auto">
+      <source src="https://raw.githubusercontent.com/liputankabarnusantarainews-sys/Liputan-kabar-nusantara/b951d6e6394f86a5cc429e2383be6c0f7674bfd7/lv_0_20261106221222.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="lkn-audio-row">
+    <button class="lkn-audio-btn" data-audio="1" disabled aria-label="Aktifkan suara LIVE 02">
+      🔊 SUARA LIVE 02
+    </button>
+    <span class="lkn-status" id="status2">MENUNGGU LIVE...</span>
+  </div>
+
+  <!-- LIVE 03 -->
+  <div class="lkn-section-title">🔴 LIVE KOMPAS TV</div>
+  <div class="lkn-screen">
+    <div id="lknPlayer3" class="lkn-player"></div>
+    <video id="intro3" class="lkn-intro" autoplay muted loop playsinline preload="auto">
+      <source src="https://raw.githubusercontent.com/liputankabarnusantarainews-sys/Liputan-kabar-nusantara/b951d6e6394f86a5cc429e2383be6c0f7674bfd7/lv_0_20261106221222.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="lkn-audio-row">
+    <button class="lkn-audio-btn" data-audio="2" disabled aria-label="Aktifkan suara LIVE 03">
+      🔊 SUARA LIVE 03
+    </button>
+    <span class="lkn-status" id="status3">MENUNGGU LIVE...</span>
+  </div>
+    <!-- LIVE 04 -->
+  <div class="lkn-section-title">🔴 LIVE TVONE</div>
+  <div class="lkn-screen">
+    <div id="lknPlayer1" class="lkn-player"><iframe src="https://www.youtube.com/embed/rQJoEpzKkNk" width="100%" height="100%" frameborder="0" allowfullscreen></iframe></div>
+    <video id="intro1" class="lkn-intro" autoplay muted loop playsinline preload="auto">
+      <source src="https://raw.githubusercontent.com/liputankabarnusantarainews-sys/Liputan-kabar-nusantara/b951d6e6394f86a5cc429e2383be6c0f7674bfd7/lv_0_20261106221222.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="lkn-audio-row">
+    <button class="lkn-audio-btn" data-audio="0" disabled aria-label="Aktifkan suara LIVE 04">
+      🔊 SUARA LIVE 01
+    </button>
+    <span class="lkn-status" id="status1">MENUNGGU LIVE...</span>
+  </div>
+  
+  <!-- FOOTER -->
+  <div class="lkn-footer">
+    © LIPUTAN KABAR NUSANTARA.INEWS
+  </div>
+
+</div>
+
+<style>
+.lkn-live-wrapper {
+  width:100%;
+  max-width:1100px;
+  margin:26px auto;
+  background:
+    radial-gradient(1200px 500px at 50% -10%, rgba(231,196,92,.07), transparent 60%),
+    repeating-linear-gradient(135deg, rgba(255,255,255,.013) 0 2px, transparent 2px 9px),
+    #080d0b;
+  color:white;
+  font-family:Arial,Helvetica,sans-serif;
+  border:1px solid #b99a43;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 0 0 1px rgba(231,196,92,.08), 0 18px 50px rgba(0,0,0,.55), 0 0 34px rgba(183,147,60,.14);
+  animation:lkn-masuk .8s ease both;
+}
+@keyframes lkn-masuk {
+  from {opacity:0; transform:translateY(14px);}
+  to   {opacity:1; transform:none;}
+}
+
+.lkn-header {
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(110deg,#071b13,#075438,#071b13);
+  padding:17px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  border-bottom:2px solid #c5a44d;
+}
+/* kilau bergerak menyapu header */
+.lkn-header::after {
+  content:"";
+  position:absolute; top:0; bottom:0; left:-60%; width:45%;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.10), transparent);
+  transform:skewX(-18deg);
+  animation:lkn-sheen 4.5s ease-in-out infinite;
+}
+@keyframes lkn-sheen {
+  0%, 55% {left:-60%;}
+  85%, 100% {left:130%;}
+}
+
+.lkn-brand {
+  position:relative; z-index:1;
+  display:flex;
+  flex-direction:column;
+  font-size:13px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
+.lkn-brand strong {
+  color:#e7c45c;
+  font-size:21px;
+  letter-spacing:1px;
+  background:linear-gradient(90deg,#f6dc8a,#e7c45c 45%,#b9922f 62%,#f6dc8a);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.lkn-brand strong span {
+  color:white;
+  font-size:12px;
+  letter-spacing:2px;
+  background:none;
+  -webkit-background-clip:initial;
+  -webkit-text-fill-color:#fff;
+}
+
+/* label LIVE berdenyut lembut */
+.lkn-live-label {
+  position:relative; z-index:1;
+  font-size:11px;
+  font-weight:bold;
+  letter-spacing:1.5px;
+  color:#ffd98a;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(231,196,92,.55);
+  padding:7px 12px;
+  border-radius:999px;
+  animation:lkn-hidup 1.6s ease-in-out infinite;
+}
+@keyframes lkn-hidup {
+  0%, 100% {box-shadow:0 0 6px rgba(255,64,54,.55), inset 0 0 8px rgba(255,64,54,.22);}
+  50%      {box-shadow:0 0 18px rgba(255,64,54,.95), inset 0 0 14px rgba(255,64,54,.42);}
+}
+
+.lkn-section-title {
+  position:relative;
+  overflow:hidden;
+  padding:13px 15px;
+  background:linear-gradient(90deg,#0d2118,#17362a 50%,#0d2118);
+  border-top:1px solid #b99a43;
+  border-bottom:1px solid #304b3b;
+  color:#e7c45c;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:1.5px;
+}
+/* kilau menyapu judul seksi */
+.lkn-section-title::after {
+  content:"";
+  position:absolute; top:0; bottom:0; left:-30%; width:22%;
+  background:linear-gradient(100deg, transparent, rgba(231,196,92,.18), transparent);
+  transform:skewX(-18deg);
+  animation:lkn-sheen 5.5s ease-in-out infinite;
+  animation-delay:1.2s;
+}
+
+.lkn-screen {
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  background:#000;
+  overflow:hidden;
+}
+/* bingkai sudut gaya studio broadcast */
+.lkn-screen::before {
+  content:"";
+  position:absolute; inset:0; z-index:4;
+  pointer-events:none;
+  background:
+    linear-gradient(#e7c45c,#e7c45c) top left/26px 2px,
+    linear-gradient(#e7c45c,#e7c45c) top left/2px 26px,
+    linear-gradient(#e7c45c,#e7c45c) top right/26px 2px,
+    linear-gradient(#e7c45c,#e7c45c) top right/2px 26px,
+    linear-gradient(#e7c45c,#e7c45c) bottom left/26px 2px,
+    linear-gradient(#e7c45c,#e7c45c) bottom left/2px 26px,
+    linear-gradient(#e7c45c,#e7c45c) bottom right/26px 2px,
+    linear-gradient(#e7c45c,#e7c45c) bottom right/2px 26px;
+  background-repeat:no-repeat;
+  opacity:.85;
+}
+/* vignette lembut di atas video */
+.lkn-screen::after {
+  content:"";
+  position:absolute; inset:0; z-index:3;
+  pointer-events:none;
+  background:radial-gradient(120% 120% at 50% 45%, transparent 62%, rgba(0,0,0,.42));
+}
+
+.lkn-player {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:1;
+  pointer-events:none;
+}
+
+.lkn-player iframe {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  pointer-events:none;
+}
+
+.lkn-intro {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
+  z-index:2;
+  transition:opacity .65s ease;
+}
+/* intro memudar halus saat live mulai */
+.lkn-intro.pudar {opacity:0;}
+
+.lkn-intro.hidden {
+  display:none;
+}
+
+.lkn-audio-row {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px;
+  background:linear-gradient(180deg,#122019,#0c1610);
+  border-bottom:1px solid #b99a43;
+}
+
+.lkn-audio-btn {
+  flex:1;
+  min-height:46px;
+  background:linear-gradient(180deg,#24402f,#1a2f23);
+  color:white;
+  border:1px solid #47634f;
+  padding:12px 8px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:bold;
+  letter-spacing:.6px;
+  cursor:pointer;
+  transition:transform .15s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.lkn-audio-btn:hover:enabled {
+  transform:translateY(-1px);
+  border-color:#e7c45c;
+  box-shadow:0 6px 16px rgba(0,0,0,.4);
+}
+.lkn-audio-btn:active:enabled {transform:translateY(0) scale(.985);}
+
+.lkn-audio-btn.active {
+  background:linear-gradient(135deg,#d3b45d,#947126);
+  color:#111;
+  border-color:#f0d98d;
+  animation:lkn-aktif 1.4s ease-in-out infinite;
+}
+@keyframes lkn-aktif {
+  0%, 100% {box-shadow:0 0 10px rgba(231,196,92,.45);}
+  50%      {box-shadow:0 0 22px rgba(231,196,92,.8);}
+}
+/* bar equalizer pada tombol yang aktif */
+.lkn-audio-btn.active::before,
+.lkn-audio-btn.active::after {
+  content:"";
+  display:inline-block;
+  width:3px;
+  height:11px;
+  margin:0 3px;
+  background:#111;
+  border-radius:2px;
+  vertical-align:middle;
+  animation:lkn-eq .7s ease-in-out infinite;
+}
+.lkn-audio-btn.active::after {animation-delay:.28s;}
+@keyframes lkn-eq {
+  0%, 100% {height:5px;}
+  50%      {height:13px;}
+}
+
+.lkn-audio-btn:disabled {
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+.lkn-status {
+  flex:1;
+  color:#e7c45c;
+  font-size:10px;
+  font-weight:bold;
+  letter-spacing:.8px;
+  text-align:center;
+}
+/* status kanal yang suaranya aktif */
+.lkn-status.on {color:#7dffb0; text-shadow:0 0 10px rgba(125,255,176,.45);}
+
+.lkn-footer {
+  padding:14px;
+  background:#050806;
+  text-align:center;
+  color:#a9b5ad;
+  font-size:9px;
+  letter-spacing:1.5px;
+  border-top:1px solid rgba(185,154,67,.35);
+}
+
+@media(max-width:480px) {
+  .lkn-header {padding:12px;}
+  .lkn-brand strong {font-size:17px;}
+  .lkn-live-label {font-size:9px; padding:6px 9px;}
+  .lkn-audio-row {gap:7px; padding:9px;}
+  .lkn-audio-btn {font-size:9px; padding:11px 5px;}
+  .lkn-status {font-size:9px;}
+  .lkn-screen::before {
+    background-size:18px 2px, 2px 18px, 18px 2px, 2px 18px, 18px 2px, 2px 18px, 18px 2px, 2px 18px;
+  }
+}
+</style>
+
+<script>
+(function() {
+  const videoIDs = [
+    "UMe1AKUyUN0",
+    "hFsof3_AkB4",
+    "76SV2baReVY"
+  ];
+
+  const players = [null, null, null];
+  const ready = [false, false, false];
+
+  const intros = [
+    document.getElementById("intro1"),
+    document.getElementById("intro2"),
+    document.getElementById("intro3")
+  ];
+
+  const buttons = document.querySelectorAll(".lkn-audio-btn");
+  const wrapper = document.getElementById("lkn-live-ruang");
+
+  let mulai = false;
+
+  // AUTOPLAY INTRO (MUTE) — pengunjung yang sudah pernah
+  // melihat intro langsung dilempar ke live tanpa jeda
+  function putarIntro() {
+    if (!tampilkanIntro()) return;
+    intros.forEach(function(video) {
+      if (!video) return;
+      video.muted = true;
+      const p = video.play();
+      if (p && p.catch) p.catch(function() {});
+    });
+  }
+
+  // INTRO GAGAL MUAT -> SEMBUNYIKAN, BIAR LIVE TETAP TAMPIL
+  intros.forEach(function(video) {
+    if (!video) return;
+    video.addEventListener("error", function() {
+      video.classList.add("hidden");
+    }, true);
+  });
+
+  // ===== v21: ANTI-JEDA — LIVE TETAP JALAN SAAT KEMBALI =====
+  const KUNCI_INTRO = "lknIntroPernahTampil";
+
+  function tandaiIntroPernah() {
+    try { sessionStorage.setItem(KUNCI_INTRO, "1"); } catch (e) {}
+  }
+
+  function introPernahTampil() {
+    try {
+      return sessionStorage.getItem(KUNCI_INTRO) === "1";
+    } catch (e) { return false; }
+  }
+
+  // Masuk lagi dalam sesi yang sama -> intro dilewati,
+  // langsung menampilkan live yang sedang berjalan
+  function tampilkanIntro() {
+    if (introPernahTampil()) {
+      intros.forEach(function(video) {
+        if (!video) return;
+        video.pause();
+        video.classList.add("hidden");
+      });
+      return false;
+    }
+    return true;
+  }
+
+  // Hidupkan lagi player yang berhenti sendiri
+  // (PAUSED / UNSTARTED / CUED) tanpa mengubah pilihan suara
+  function hidupkanLagi(index) {
+    const player = players[index];
+    if (!player || !ready[index]) return;
+    try {
+      const keadaan = player.getPlayerState();
+      if (keadaan !== YT.PlayerState.PLAYING &&
+          keadaan !== YT.PlayerState.BUFFERING) {
+        player.playVideo();
+      }
+    } catch (e) {}
+  }
+
+  function hidupkanSemuaLagi() {
+    for (let i = 0; i < players.length; i++) hidupkanLagi(i);
+  }
+
+  // Kembali dari tab lain / minimalkan jendela / tombol kembali
+  // (bfcache) -> pastikan semua live berjalan lagi
+  document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === "visible") hidupkanSemuaLagi();
+  });
+  window.addEventListener("pageshow", hidupkanSemuaLagi);
+  window.addEventListener("focus", hidupkanSemuaLagi);
+
+  // BUAT SEMUA LIVE
+  function createPlayers() {
+
+    videoIDs.forEach(function(id, index) {
+
+      players[index] = new YT.Player(
+        "lknPlayer" + (index + 1),
+        {
+          videoId: id,
+
+          playerVars: {
+            autoplay: 1,
+            mute: 1,
+            controls: 0,
+            disablekb: 1,
+            fs: 0,
+            rel: 0,
+            playsinline: 1,
+            enablejsapi: 1,
+            iv_load_policy: 3,
+            modestbranding: 1
+          },
+
+          events: {
+
+            onReady: function(event) {
+
+              ready[index] = true;
+
+              // LIVE OTOMATIS BERJALAN DALAM KEADAAN MUTE
+              event.target.mute();
+              event.target.setVolume(100);
+              event.target.playVideo();
+
+              buttons[index].disabled = false;
+            },
+
+            onStateChange: function(event) {
+
+              // SAAT LIVE BENAR-BENAR MULAI:
+              // INTRO MEMUDAR HALUS LALU HILANG
+              if (event.data === YT.PlayerState.PLAYING) {
+
+                const intro = intros[index];
+                intro.classList.add("pudar");
+                setTimeout(function() {
+                  intro.pause();
+                  intro.classList.add("hidden");
+                }, 700);
+                tandaiIntroPernah();
+
+                // Status mengikuti pilihan suara agar teks
+                // SUARA AKTIF tidak ikut terreset saat resume
+                const elStatus = document.getElementById(
+                  "status" + (index + 1)
+                );
+                const tombolAktif = document.querySelector(
+                  ".lkn-audio-btn.active"
+                );
+                if (tombolAktif) {
+                  const iAktif = Number(tombolAktif.dataset.audio);
+                  elStatus.textContent =
+                    index === iAktif ? "SUARA AKTIF" : "LIVE TETAP BERJALAN";
+                  elStatus.classList.toggle("on", index === iAktif);
+                } else {
+                  elStatus.textContent = "LIVE BERJALAN";
+                }
+              }
+
+              // LIVE TIDAK BOLEH BERHENTI: stream yang berakhir
+              // langsung diputar lagi otomatis (players[index] dipakai
+              // agar tidak bergantung pada event.target)
+              if (event.data === YT.PlayerState.ENDED) {
+                try { players[index].playVideo(); } catch (e) {}
+              }
+
+              if (event.data === YT.PlayerState.BUFFERING) {
+                document.getElementById(
+                  "status" + (index + 1)
+                ).textContent = "LIVE MEMUAT...";
+              }
+            },
+
+            onError: function() {
+              document.getElementById(
+                "status" + (index + 1)
+              ).textContent = "LIVE TIDAK TERSEDIA";
+            }
+          }
+        }
+      );
+
+    });
+  }
+
+  // LOAD YOUTUBE API
+  function loadYouTubeAPI() {
+
+    if (window.YT && window.YT.Player) {
+      createPlayers();
+      return;
+    }
+
+    window.onYouTubeIframeAPIReady = createPlayers;
+
+    if (!document.querySelector(
+      'script[src="https://www.youtube.com/iframe_api"]'
+    )) {
+      const script = document.createElement("script");
+      script.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(script);
+    }
+  }
+
+  // MULAI HANYA SAAT WIDGET TERLIHAT DI LAYAR
+  // (hemat data; begitu terlihat, live tetap otomatis jalan)
+  function mulaiSemua() {
+    if (mulai) return;
+    mulai = true;
+    keAtasFooter();
+    putarIntro();
+    loadYouTubeAPI();
+  }
+
+  if (wrapper && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(function(entri) {
+      entri.forEach(function(e) {
+        if (e.isIntersecting) {
+          io.disconnect();
+          mulaiSemua();
+        }
+      });
+    }, { threshold: 0.12 });
+    io.observe(wrapper);
+  } else {
+    mulaiSemua();
+  }
+
+  // MUTE SEMUA AUDIO TANPA MENGHENTIKAN VIDEO
+  function muteAll() {
+
+    players.forEach(function(player) {
+      if (player) {
+        try {
+          player.mute();
+        } catch(e) {}
+      }
+    });
+
+  }
+
+  // GANTI SUARA SAJA, VIDEO TETAP BERJALAN
+  function selectAudio(index) {
+
+    if (!ready[index] || !players[index]) return;
+
+    // Hanya mematikan audio semua LIVE
+    muteAll();
+
+    // Aktifkan suara LIVE pilihan
+    // TIDAK ADA playVideo() DI SINI
+    players[index].unMute();
+    players[index].setVolume(100);
+
+    buttons.forEach(function(button) {
+      button.classList.toggle(
+        "active",
+        Number(button.dataset.audio) === index
+      );
+    });
+
+    // Perbarui status masing-masing LIVE
+    for (let i = 0; i < players.length; i++) {
+
+      const el = document.getElementById(
+        "status" + (i + 1)
+      );
+
+      el.textContent =
+        i === index
+          ? "SUARA AKTIF"
+          : "LIVE TETAP BERJALAN";
+
+      el.classList.toggle("on", i === index);
+    }
+  }
+
+  // TOMBOL SUARA
+  buttons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+      selectAudio(Number(button.dataset.audio));
+    });
+
+  });
+
+  // ===== POSISI OTOMATIS (v20) =====
+  // Widget ditaruh persis di ATAS footer situs,
+  // tanpa mengubah satu baris kode React situs.
+  function keAtasFooter() {
+    if (!wrapper) return false;
+    const footer = document.querySelector("footer");
+    if (!footer || !footer.parentNode) return false;
+    if (wrapper.parentNode === footer.parentNode &&
+        wrapper.nextElementSibling === footer) return true;
+    footer.parentNode.insertBefore(wrapper, footer);
+    return true;
+  }
+
+  keAtasFooter();
+
+  if (wrapper && "MutationObserver" in window) {
+    let t = null;
+    new MutationObserver(function() {
+      clearTimeout(t);
+      t = setTimeout(keAtasFooter, 120);
+    }).observe(document.body, { childList: true, subtree: true });
+  }
+
+})();
+</script>
+
 <style id="lkn-pwa-gaya">
 #lkn-tombol-pasang{position:fixed;left:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:2147483000;display:none;align-items:center;gap:8px;background:#0755B5;color:#fff;border:2px solid #fff;border-radius:999px;padding:9px 14px;font:800 13px/1 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;letter-spacing:.02em;box-shadow:0 6px 22px rgba(7,85,181,.45);cursor:pointer;-webkit-tap-highlight-color:transparent}
 #lkn-tombol-pasang.tampil{display:flex}
