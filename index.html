@@ -162,7 +162,7 @@ tailwind.config = { theme: { extend: {
 window.BERITA_DATA = [
  {
   judul: "PEMUDA DESA MARGA MULYA DORONG PEMBINAAN SEPAK BOLA, RENCANA PEMBENTUKAN SSB MULAI DISIAPKAN",
-  tanggal: "8 November 2026",
+  tanggal: "9 November 2026",
   kategori: "Berita Desa",
   foto: "https://raw.githubusercontent.com/liputankabarnusantarainews-sys/Liputan-kabar-nusantara/dee0ed90d78134bc74edacabcab20899aa47b589/PEMUDA%20DESA%20MARGA%20MULYA%20DORONG%20PEMBINAAN%20SEPAK%20BOLA%2C%20RENCANA%20PEMBENTUKAN%20SSB%20MULAI%20DISIAPKAN.jpg",
   isi: `KABUPATEN TANGERANG — Upaya mengembangkan potensi olahraga sepak bola di Desa Marga Mulya, Kecamatan Mauk, Kabupaten Tangerang, mulai mendapat perhatian. Para pemuda didorong untuk meningkatkan kemampuan, menjaga kebugaran fisik, serta membangun kedisiplinan.
@@ -1945,26 +1945,147 @@ function KotakRedaksi(props){
   );
 }
 
-/* ===== KOTAK IKLAN — memindahkan banner iklan ke dalam kotak khusus di halaman ===== */
+/* ===== KOTAK IKLAN v22/v23 — iklan hanya boleh tampil di dalam kotak khusus (kolam iklan).
+   Banner utama dipakai bergantian: kotak yang sedang aktif (beranda atau halaman baca)
+   meminjam banner dari wadah #iklan-sumber; saat kotak ditutup, banner dikembalikan ke
+   wadah supaya kotak berikutnya bisa menampilkannya. Tidak ada pengalihan halaman saat
+   klik berita. v23: popup iklan yang tampil normal (PopupIklan) dan kotak iklan di dalam
+   isi setiap berita (IklanDalamIsi) memakai instans banner sendiri (pasangIklanInstans,
+   kunci & URL diambil otomatis dari #iklan-sumber) — semua iklan tetap selalu di kotak. ===== */
+
+/* ===== IKLAN v23 — pembuat INSTANS banner: iframe berisi kode iklan yang sama persis
+   dengan #iklan-sumber (kunci & URL diambil otomatis dari sana). Dipakai kotak iklan
+   tambahan (popup & kotak dalam isi berita) supaya setiap kotak punya iklannya sendiri
+   dan iklan tidak pernah tampil di luar kotak / menumpang di isi berita. ===== */
+/* IKLAN v23: kunci & URL banner resmi ditangkap SEKALI di awal — sebelum IklanBox
+   memindahkan isi #iklan-sumber ke kotak aktif (mekanisme pinjam-kembalikan), sehingga
+   wadah sudah kosong saat instans dibuat. Setiap kotak instans tetap memakai kode yang
+   sama persis dengan banner resmi #iklan-sumber. */
+const IKLAN_V23=(function(){
+  try{
+    const src=document.getElementById('iklan-sumber');
+    if(!src) return null;
+    const m=String(src.innerHTML||'').match(/'key'\s*:\s*'([^']+)'/);
+    const st=src.querySelector('script[src]');
+    if(!m || !st) return null;
+    return { kunci:m[1], url:st.getAttribute('src') };
+  }catch(e){ return null; }
+})();
+
+function pasangIklanInstans(wadah){
+  try{
+    if(!wadah || wadah.querySelector('iframe')) return;
+    if(!IKLAN_V23) return;
+    const html='<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:transparent}</style></head><body>'
+      +'<scr'+'ipt type="text/javascript">atOptions = {"key":"'+IKLAN_V23.kunci+'","format":"iframe","height":250,"width":300,"params":{}};</scr'+'ipt>'
+      +'<scr'+'ipt type="text/javascript" src="'+IKLAN_V23.url+'"></scr'+'ipt>'
+      +'</body></html>';
+    const f=document.createElement('iframe');
+    f.width='300'; f.height='250';
+    f.setAttribute('scrolling','no'); f.setAttribute('frameborder','0');
+    f.setAttribute('title','Iklan');
+    f.style.border='0'; f.style.display='block'; f.style.background='transparent'; f.style.position='relative';
+    f.srcdoc=html;
+    wadah.appendChild(f);
+  }catch(e){}
+}
+
+/* ===== IKLAN v23 — POPUP IKLAN NORMAL: tampil seperti popup situs berita pada umumnya.
+   Muncul sekali per kunjungan (ditandai di sesi), DI DALAM kotak, tombol tutup jelas
+   (tombol x, klik di luar kotak, tombol Esc), tidak pernah mengalihkan halaman ke iklan,
+   dan tidak mengunci halaman sehingga aktivitas membaca berita tidak terganggu. ===== */
+function PopupIklan(){
+  const [tampil,setTampil]=React.useState(false);
+  const ref=React.useRef(null);
+  React.useEffect(()=>{
+    const t=setTimeout(function(){
+      try{
+        if(!sessionStorage.getItem('lknPopupIklanV23')){
+          sessionStorage.setItem('lknPopupIklanV23','1');
+          setTampil(true);
+        }
+      }catch(e){}
+    },1200);
+    return ()=>clearTimeout(t);
+  },[]);
+  React.useEffect(()=>{
+    if(!tampil) return;
+    if(ref.current) pasangIklanInstans(ref.current);
+    const esc=e=>{ if(e.key==='Escape') setTampil(false); };
+    document.addEventListener('keydown',esc);
+    return ()=>document.removeEventListener('keydown',esc);
+  },[tampil]);
+  if(!tampil) return null;
+  return (
+    <div className="fixed inset-0 bg-[rgba(15,23,42,0.55)] flex items-center justify-center p-4" style={{zIndex:60}} role="dialog" aria-modal="true" aria-label="Popup iklan" onClick={()=>setTampil(false)}>
+      <div className="bg-white rounded-2xl border border-mistDark shadow-2xl w-[340px] max-w-[94vw] p-3" onClick={e=>e.stopPropagation()}>
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-1.5">
+            <span className="w-1.5 h-4 rounded-full bg-brandred inline-block"></span>
+            <span className="text-[9px] font-black uppercase tracking-widest text-inklight">Iklan</span>
+          </div>
+          <button onClick={()=>setTampil(false)} title="Tutup iklan" aria-label="Tutup iklan" className="w-7 h-7 rounded-full border border-mistDark text-inkgray font-black text-sm leading-none hover:bg-mist">×</button>
+        </div>
+        <div ref={ref} className="ad-instans relative w-[300px] max-w-full h-[250px] mx-auto rounded-xl overflow-hidden bg-mist/60">
+          <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-inklight text-center px-3">Ruang Iklan 300×250</span>
+        </div>
+        <p className="mt-2 mb-0 text-center text-[9px] text-inklight">Iklan didukung pengiklan — berita tetap nyaman dibaca.</p>
+      </div>
+    </div>
+  );
+}
+
+/* ===== IKLAN v23 — kotak iklan DI DALAM ISI berita: muncul di setiap berita (setelah
+   paragraf kedua), selalu di dalam kotak, tidak menutupi teks & tidak mengganggu. ===== */
+function IklanDalamIsi(){
+  const ref=React.useRef(null);
+  React.useEffect(()=>{ if(ref.current) pasangIklanInstans(ref.current); },[]);
+  return (
+    <div className="w-full max-w-[336px] mx-auto my-7">
+      <div className="text-center text-[9px] font-black uppercase tracking-widest text-inklight mb-1.5">Iklan</div>
+      <div ref={ref} className="ad-instans relative h-[250px] bg-white border border-mistDark rounded-2xl overflow-hidden flex items-center justify-center">
+        <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-inklight text-center px-3">Ruang Iklan 300×250</span>
+      </div>
+    </div>
+  );
+}
 function IklanBox(){
   const ref = React.useRef(null);
   const [hasAd,setHasAd] = React.useState(null); /* null = sedang dicek, kotak tetap dirender */
   React.useEffect(()=>{
-    let tries=0;
-    const tick=()=>{
-      tries++;
+    let tries=0; let berhenti=false;
+    const simpul = ref.current; /* node kotak ini — masih terjangkau lewat variabel
+      ini saat unmount, karena React mengosongkan ref.current sebelum cleanup */
+    const ambil=()=>{
       try{
-        const src=document.getElementById('iklan-sumber');
         const dst=ref.current;
-        if(src&&dst&&src!==dst&&src.childNodes.length&&!dst.childNodes.length){
-          while(src.firstChild){ dst.appendChild(src.firstChild); }
-        }
+        if(!dst||dst.childNodes.length) return;
+        const kandidat=[document.getElementById('iklan-sumber')]
+          .concat(Array.prototype.slice.call(document.querySelectorAll('.ad-slot')))
+          .filter(function(el){ return el&&el!==dst&&el.childNodes.length; });
+        if(kandidat.length){ while(kandidat[0].firstChild){ dst.appendChild(kandidat[0].firstChild); } }
       }catch(e){}
+    };
+    const periksa=()=>{
+      if(berhenti) return;
+      tries++;
+      ambil();
       const ok = !!(ref.current && ref.current.querySelectorAll('iframe,ins,img').length);
       if(ok||tries>=20){ setHasAd(ok); return; }
-      setTimeout(tick,300);
+      setTimeout(periksa,300);
     };
-    tick();
+    const saatLepas=()=>{ if(!berhenti){ tries=0; setHasAd(null); periksa(); } };
+    document.addEventListener('lkn-iklan-lepas',saatLepas);
+    periksa();
+    return ()=>{
+      berhenti=true;
+      document.removeEventListener('lkn-iklan-lepas',saatLepas);
+      try{
+        const src=document.getElementById('iklan-sumber');
+        if(simpul&&src){ while(simpul.firstChild){ src.appendChild(simpul.firstChild); } }
+        document.dispatchEvent(new Event('lkn-iklan-lepas'));
+      }catch(e){}
+    };
   },[]);
   if(hasAd===false) return null; /* sembunyikan hanya bila dipastikan tidak ada iklan */
   return (
@@ -2003,7 +2124,11 @@ function ArticleBody({ content, fontSize }) {
   return (
     <div className="article-prose font-serif text-ink" style={{fontSize:fontSize+'px', lineHeight:1.85}}>
       {paras.map((p,i)=>(
-        <p key={i} className={i===0?'dropcap':''} style={{whiteSpace:'pre-line'}}>{p}</p>
+        <React.Fragment key={i}>
+          <p className={i===0?'dropcap':''} style={{whiteSpace:'pre-line'}}>{p}</p>
+          {/* IKLAN v23 — kotak iklan di dalam isi berita (setelah paragraf kedua) */}
+          {(i===1||(paras.length===1&&i===0)) && <IklanDalamIsi/>}
+        </React.Fragment>
       ))}
     </div>
   );
@@ -3186,6 +3311,11 @@ function App(){
               </div>
             </div>
 
+            {/* KOTAK IKLAN v22/v23 — saat membaca berita: kotak ini meminjam banner utama; tambahan v23: kotak iklan di dalam isi berita (IklanDalamIsi) + popup iklan sekali per kunjungan — semua tetap di dalam kotak */}
+            <div className="mt-10">
+              <IklanBox/>
+            </div>
+
             {relatedArticles.length>0 && (
               <div className="mt-10 pt-6 border-t-2 border-navy">
                 <h3 className="flex items-center gap-2.5 font-serif text-xl sm:text-2xl font-black mb-4">
@@ -3472,15 +3602,24 @@ function App(){
         </div>
       </nav>
       <div className="h-[62px] sm:hidden" aria-hidden="true"></div>
+      {/* IKLAN v23 — popup iklan normal: sekali per kunjungan, di dalam kotak, bisa ditutup */}
+      <PopupIklan/>
     </div>
   );
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<Boundary><App /></Boundary>);
 </script>
-  <script data-cfasync="false" src="https://afders.org/1/92fa69e02e6551a790052302a27a109a"></script>
-  <script data-cfasync="false" src="https://bicea.org/14/252bb7e8dc3f9885f0879d7c4e8e0871"></script>
-<!-- KOTAK IKLAN: banner di bawah ini dipindahkan otomatis ke kotak "Iklan" di halaman utama (komponen IklanBox). Jangan dihapus. -->
+  <!-- v22 (perbaikan iklan): dua script iklan popup/direct (afders.org/1/... dan
+       bicea.org/14/...) DIHAPUS. Jenis inilah yang memunculkan iklan di luar kotak
+       (termasuk menumpang di isi berita), membuka iklan saat berita diklik/dibaca,
+       dan bisa memindahkan halaman ke iklan. Script ini TETAP DIHAPUS di v23 — persis
+       inilah iklan tersembunyi yang membuat klik berita langsung berpindah ke iklan.
+       v23 (permintaan user): iklan tampil NORMAL — popup iklan yang terlihat (sekali
+       per kunjungan, di dalam kotak, bisa ditutup, tidak mengalihkan halaman) dan
+       kotak iklan di dalam isi setiap berita. Semua iklan selalu DI DALAM KOTAK
+       (IklanBox / PopupIklan / IklanDalamIsi) tanpa mengganggu aktivitas berita. -->
+<!-- KOTAK IKLAN: banner di bawah ini dipindahkan otomatis ke kotak "Iklan" yang aktif (komponen IklanBox) dan dipakai juga sebagai sumber kunci/URL instans iklan v23 (popup & kotak dalam isi berita). Jangan dihapus. -->
 <div id="iklan-sumber" aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:320px;height:250px;overflow:hidden;">
 <script>
   atOptions = {
@@ -3554,16 +3693,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(<Boundary><App /></B
 <!-- LIVE 04 -->
 <div class="lkn-section-title">🔴 LIVE TVONE</div>
 <div class="lkn-screen">
-  <div id="lknPlayer1" class="lkn-player"></div>
-  <video id="intro1" class="lkn-intro" autoplay muted loop playsinline preload="auto">
+  <div id="lknPlayer4" class="lkn-player"></div>
+  <video id="intro4" class="lkn-intro" autoplay muted loop playsinline preload="auto">
     <source src="https://raw.githubusercontent.com/liputankabarnusantarainews-sys/Liputan-kabar-nusantara/b951d6e6394f86a5cc429e2383be6c0f7674bfd7/lv_0_20261106221222.mp4" type="video/mp4">
   </video>
 </div>
 <div class="lkn-audio-row">
-  <button class="lkn-audio-btn" data-audio="0" disabled aria-label="Aktifkan suara LIVE 04">
+  <button class="lkn-audio-btn" data-audio="3" disabled aria-label="Aktifkan suara LIVE 04">
     🔊 SUARA LIVE 04
   </button>
-  <span class="lkn-status" id="status1">MENUNGGU LIVE...</span>
+  <span class="lkn-status" id="status4">MENUNGGU LIVE...</span>
 </div>
   
   <!-- FOOTER -->
@@ -3866,7 +4005,8 @@ const ready = [false, false, false, false];
   const intros = [
     document.getElementById("intro1"),
     document.getElementById("intro2"),
-    document.getElementById("intro3")
+    document.getElementById("intro3"),
+    document.getElementById("intro4")
   ];
 
   const buttons = document.querySelectorAll(".lkn-audio-btn");
