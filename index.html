@@ -3194,9 +3194,8 @@ function App(){
             <p className="mt-3 text-[15px] sm:text-lg text-inkgray leading-relaxed font-serif">{selectedArticle.deck}</p>
 
             <div className="mt-5 flex items-center gap-3 border-y border-mist py-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-navy to-navy-light text-white flex items-center justify-center font-black text-sm shrink-0 ring-2 ring-brandred/20">
-                {(selectedArticle.author||'R').charAt(0).toUpperCase()}
-              </div>
+              <SafeImg src={LOCAL_ASSETS.logoUtama} fallback={LOCAL_ASSETS.logo} net={LOGO_DARURAT}
+                alt={'Logo '+SITE_NAME} className="w-10 h-10 rounded-full bg-white object-contain p-0.5 shrink-0 ring-2 ring-brandred/20" />
               <div className="min-w-0">
                 <div className="text-[13px] sm:text-sm font-bold break-anywhere">{selectedArticle.author}</div>
                 <div className="text-[10px] sm:text-[11px] text-inklight mt-0.5">
